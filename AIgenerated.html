@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Search</title>
+    <style>
+        body {
+            background-color: #228B22; /* Forest green background */
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        input, select {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            background-color: #32CD32; /* Lime green button */
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #228B22; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Flight Search</h1>
+        <form id="flightForm">
+            <label for="departure">Departure City:</label>
+            <input type="text" id="departure" name="departure" placeholder="Enter departure city" required>
+            
+            <label for="arrival">Arrival City:</label>
+            <input type="text" id="arrival" name="arrival" value="Rome, Italy" readonly>
+            
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+            
+            <label for="people">Number of People:</label>
+            <input type="number" id="people" name="people" min="1" required>
+            
+            <button type="button" onclick="searchFlights()">Search Flights</button>
+        </form>
+        <div id="results"></div>
+    </div>
+
+    <script>
+        function searchFlights() {
+            const departure = document.getElementById('departure').value;
+            const date = document.getElementById('date').value;
+            const people = document.getElementById('people').value;
+
+            // Mock flight data
+            const flights = [
+                { airline: 'Airline A', price: 500 },
+                { airline: 'Airline B', price: 600 },
+                { airline: 'Airline C', price: 700 }
+            ];
+
+            let results = '<h2>Available Flights</h2>';
+            flights.forEach(flight => {
+                results += `<p>${flight.airline}: $${flight.price * people} (for ${people} people)</p>`;
+            });
+
+            document.getElementById('results').innerHTML = results;
+        }
+    </script>
+</body>
+</html>
